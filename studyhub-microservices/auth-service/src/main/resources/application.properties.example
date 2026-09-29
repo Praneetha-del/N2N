@@ -1,0 +1,38 @@
+# Server Configuration
+server.port=8085
+spring.application.name=auth-service
+
+# MongoDB Configuration
+spring.data.mongodb.uri=${MONGODB_URI:mongodb://localhost:27017/studyhub}
+spring.data.mongodb.database=studyhub
+
+# JWT Configuration
+jwt.secret=${JWT_SECRET:YOUR_JWT_SECRET_KEY_HERE}
+jwt.expiration=${JWT_EXPIRATION:86400000}
+jwt.refresh-expiration=${JWT_REFRESH_EXPIRATION:604800000}
+
+# Frontend URL
+frontend.url=${FRONTEND_URL:http://localhost:5173}
+
+# Jackson Configuration
+spring.jackson.serialization.write-dates-as-timestamps=false
+spring.jackson.date-format=yyyy-MM-dd'T'HH:mm:ss.SSSXXX
+spring.jackson.time-zone=UTC
+
+# Email Configuration (Placeholders)
+spring.mail.host=${MAIL_HOST:smtp.gmail.com}
+spring.mail.port=${MAIL_PORT:587}
+spring.mail.username=${MAIL_USERNAME:your_email@example.com}
+spring.mail.password=${MAIL_PASSWORD:your_app_password}
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+spring.mail.properties.mail.smtp.starttls.required=true
+spring.mail.properties.mail.smtp.ssl.trust=smtp.gmail.com
+spring.mail.properties.mail.smtp.ssl.protocols=TLSv1.2
+spring.mail.properties.mail.smtp.connectiontimeout=10000
+spring.mail.properties.mail.smtp.timeout=10000
+spring.mail.properties.mail.smtp.writetimeout=10000
+spring.mail.properties.mail.debug=false
+
+# Actuator
+management.endpoints.web.exposure.include=health,info

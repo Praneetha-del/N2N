@@ -1,0 +1,96 @@
+# ==========================================
+# StudyHub Project .gitignore
+# ==========================================
+
+# Environment & Secrets
+.env
+.env.*
+.env.local
+.env.*.local
+!.env.example
+*.env
+
+# Spring Boot Configuration & Properties with Credentials
+application.properties
+application-*.properties
+application-local.properties
+application-dev.properties
+application-prod.properties
+!application.properties.example
+!application-*.properties.example
+
+# Keys & Certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.cer
+*.crt
+credentials.json
+secret*
+token*
+
+# Build outputs
+target/
+**/target/
+dist/
+**/dist/
+dist-ssr/
+**/dist-ssr/
+build/
+**/build/
+out/
+**/out/
+bin/
+**/bin/
+
+# Node Dependencies
+node_modules/
+**/node_modules/
+.pnp
+.pnp.js
+
+# Logs
+logs/
+**/logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Database & Storage
+mongo-data/
+**/mongo-data/
+data/
+uploads/
+**/uploads/
+
+# IDE & Editor files
+.idea/
+**/.idea/
+.vscode/
+**/.vscode/
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
+**/.settings/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS Generated
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini

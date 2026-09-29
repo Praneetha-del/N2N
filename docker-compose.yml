@@ -1,0 +1,90 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: studyhub-mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - studyhub-net
+
+  studyhub-gateway:
+    build:
+      context: ./studyhub-microservices/studyhub-gateway
+      dockerfile: Dockerfile
+    container_name: studyhub-gateway
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - SERVER_PORT=8080
+      - AUTH_SERVICE_URL=http://auth-service:8085
+      - MATERIAL_SERVICE_URL=http://material-service:8082
+      - AI_SERVICE_URL=http://ai-service:8083
+    depends_on:
+      - auth-service
+      - material-service
+      - ai-service
+    networks:
+      - studyhub-net
+
+  auth-service:
+    build:
+      context: ./studyhub-microservices/auth-service
+      dockerfile: Dockerfile
+    container_name: studyhub-auth-service
+    restart: always
+    ports:
+      - "8085:8085"
+    environment:
+      - SERVER_PORT=8085
+      - MONGODB_URI=mongodb://mongodb:27017/studyhub
+      - FRONTEND_URL=http://localhost:5173
+    depends_on:
+      - mongodb
+    networks:
+      - studyhub-net
+
+  material-service:
+    build:
+      context: ./studyhub-microservices/material-service
+      dockerfile: Dockerfile
+    container_name: studyhub-material-service
+    restart: always
+    ports:
+      - "8082:8082"
+    environment:
+      - SERVER_PORT=8082
+      - MONGODB_URI=mongodb://mongodb:27017/studyhub
+    depends_on:
+      - mongodb
+    networks:
+      - studyhub-net
+
+  ai-service:
+    build:
+      context: ./studyhub-microservices/ai-service
+      dockerfile: Dockerfile
+    container_name: studyhub-ai-service
+    restart: always
+    ports:
+      - "8083:8083"
+    environment:
+      - SERVER_PORT=8083
+      - MONGODB_URI=mongodb://mongodb:27017/studyhub
+    depends_on:
+      - mongodb
+    networks:
+      - studyhub-net
+
+networks:
+  studyhub-net:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local

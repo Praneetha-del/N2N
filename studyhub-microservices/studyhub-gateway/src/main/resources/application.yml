@@ -1,0 +1,48 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: studyhub-gateway
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:5173"
+              - "http://127.0.0.1:5173"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+              - PATCH
+            allowedHeaders: "*"
+            allowCredentials: true
+            maxAge: 3600
+      routes:
+        # Route 1: Auth & User Service
+        - id: auth-service
+          uri: ${AUTH_SERVICE_URL:http://localhost:8085}
+          predicates:
+            - Path=/api/auth, /api/auth/**, /api/users, /api/users/**, /api/verification, /api/verification/**, /api/admin/users, /api/admin/users/**, /api/admin/teachers, /api/admin/teachers/**, /api/admin/stats, /api/admin/activity
+
+        # Route 2: Academic & Material Service
+        - id: material-service
+          uri: ${MATERIAL_SERVICE_URL:http://localhost:8082}
+          predicates:
+            - Path=/api/materials, /api/materials/**, /api/curriculum, /api/curriculum/**, /api/departments, /api/departments/**, /api/admin/materials, /api/admin/materials/**, /api/admin/curriculum, /api/admin/curriculum/**, /api/admin/departments, /api/admin/departments/**, /api/admin/subjects, /api/admin/subjects/**, /api/test, /api/test/**
+
+        # Route 3: AI Service
+        - id: ai-service
+          uri: ${AI_SERVICE_URL:http://localhost:8083}
+          predicates:
+            - Path=/api/ai, /api/ai/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway

@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: 37 99 235;
+    --color-navy: 22 58 112;
+    --color-bg: 248 250 252;
+  }
+
+  body {
+    background-color: #F8FAFC;
+    color: #0F172A;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .card-hover {
+    @apply transition-all duration-200 hover:shadow-md hover:border-blue-200;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-150 font-medium shadow-sm hover:shadow active:scale-[0.99] flex items-center justify-center gap-2;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-lg transition-all duration-150 font-medium shadow-sm hover:border-slate-300 active:scale-[0.99] flex items-center justify-center gap-2;
+  }
+
+  .btn-navy {
+    @apply px-4 py-2 bg-[#163A70] hover:bg-[#0F274D] text-white rounded-lg transition-all duration-150 font-medium shadow-sm hover:shadow active:scale-[0.99] flex items-center justify-center gap-2;
+  }
+
+  .btn-danger {
+    @apply px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-lg transition-all duration-150 font-medium shadow-sm hover:shadow active:scale-[0.99] flex items-center justify-center gap-2;
+  }
+
+  .input-field {
+    @apply w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-lg text-slate-800 text-sm placeholder-slate-400 focus:ring-2 focus:ring-blue-100 focus:border-blue-600 outline-none transition-all;
+  }
+
+  .input-label {
+    @apply block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5;
+  }
+
+  .card {
+    @apply bg-white rounded-xl border border-slate-200/80 shadow-sm overflow-hidden;
+  }
+
+  .card-body {
+    @apply p-6;
+  }
+
+  .badge {
+    @apply px-2.5 py-0.5 rounded-full text-xs font-semibold;
+  }
+
+  .badge-blue {
+    @apply bg-blue-50 text-blue-700 border border-blue-200/60;
+  }
+
+  .badge-navy {
+    @apply bg-[#EFF6FF] text-[#163A70] border border-blue-200/80;
+  }
+
+  .badge-green {
+    @apply bg-emerald-50 text-emerald-700 border border-emerald-200/60;
+  }
+
+  .badge-red {
+    @apply bg-rose-50 text-rose-700 border border-rose-200/60;
+  }
+
+  .badge-yellow {
+    @apply bg-amber-50 text-amber-700 border border-amber-200/60;
+  }
+
+  .badge-gray {
+    @apply bg-slate-100 text-slate-700 border border-slate-200;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Typing animation for AI chatbot */
+@keyframes typingPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.typing-animation {
+  animation: typingPulse 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.streaming-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: #2563EB;
+  animation: blink 0.8s step-end infinite;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+}
+
+/* Hide PiP button from video elements */
+video::-webkit-media-controls-picture-in-picture-button {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

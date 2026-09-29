@@ -1,0 +1,24 @@
+# Server Configuration
+server.port=8083
+spring.application.name=ai-service
+
+# MongoDB Configuration
+spring.data.mongodb.uri=${MONGODB_URI:mongodb://localhost:27017/studyhub}
+spring.data.mongodb.database=studyhub
+
+# JWT Configuration
+jwt.secret=${JWT_SECRET:YOUR_JWT_SECRET_KEY_HERE}
+jwt.expiration=${JWT_EXPIRATION:86400000}
+jwt.refresh-expiration=${JWT_REFRESH_EXPIRATION:604800000}
+
+# Groq AI Configuration (Placeholders)
+groq.api.key=${GROQ_API_KEY:YOUR_GROQ_API_KEY_HERE}
+groq.model=${GROQ_MODEL:openai/gpt-oss-120b}
+
+# Jackson Configuration
+spring.jackson.serialization.write-dates-as-timestamps=false
+spring.jackson.date-format=yyyy-MM-dd'T'HH:mm:ss.SSSXXX
+spring.jackson.time-zone=UTC
+
+# Actuator
+management.endpoints.web.exposure.include=health,info

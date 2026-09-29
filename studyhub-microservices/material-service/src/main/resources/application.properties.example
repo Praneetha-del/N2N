@@ -1,0 +1,32 @@
+# Server Configuration
+server.port=8082
+spring.application.name=material-service
+
+# MongoDB Configuration
+spring.data.mongodb.uri=${MONGODB_URI:mongodb://localhost:27017/studyhub}
+spring.data.mongodb.database=studyhub
+
+# JWT Configuration
+jwt.secret=${JWT_SECRET:YOUR_JWT_SECRET_KEY_HERE}
+jwt.expiration=${JWT_EXPIRATION:86400000}
+jwt.refresh-expiration=${JWT_REFRESH_EXPIRATION:604800000}
+
+# File Upload Configuration
+spring.servlet.multipart.max-file-size=50MB
+spring.servlet.multipart.max-request-size=50MB
+file.upload.allowed-types=application/pdf,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document
+file.upload.max-size=52428800
+
+# Cloudinary Configuration (Placeholders)
+cloudinary.cloud-name=${CLOUDINARY_CLOUD_NAME:your_cloud_name}
+cloudinary.api-key=${CLOUDINARY_API_KEY:your_api_key}
+cloudinary.api-secret=${CLOUDINARY_API_SECRET:your_api_secret}
+cloudinary.default-resource-type=raw
+
+# Jackson Configuration
+spring.jackson.serialization.write-dates-as-timestamps=false
+spring.jackson.date-format=yyyy-MM-dd'T'HH:mm:ss.SSSXXX
+spring.jackson.time-zone=UTC
+
+# Actuator
+management.endpoints.web.exposure.include=health,info
